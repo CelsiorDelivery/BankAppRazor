@@ -1,0 +1,16 @@
+@page
+@model BankRazor.Pages.SettingsModel
+@{
+    ViewData["Title"] = "Settings";
+}
+<section class="page-head"><div><p class="eyebrow">Master</p><h1>Settings</h1></div></section>
+<section class="panel">
+    <form method="post" asp-antiforgery="true" class="form-grid compact">
+        <label>Account ID <input asp-for="Settings.AccountID" readonly /></label>
+        <label>Account Type <input asp-for="Settings.AccountType" readonly /></label>
+        <label>Minimum Balance For Cheque Holder <input asp-for="Settings.Cheque" type="number" step="0.01" /></label>
+        <label>Minimum Balance For Non Cheque <input asp-for="Settings.Nocheque" type="number" step="0.01" /></label>
+        <label>Interest Rate <input asp-for="Settings.InterestRate" type="number" step="0.01" /></label>
+        <div class="actions wide"><button type="submit">Save</button></div>
+    </form>
+</section>

@@ -1,0 +1,7 @@
+@page
+@model BankRazor.Pages.Reports.MonthlyStatementModel
+@{
+    ViewData["Title"] = "Monthly Statement";
+}
+<section class="page-head"><div><p class="eyebrow">Reports</p><h1>Monthly Statement</h1></div></section>
+<partial name="_ReportTable" model="Model.Transactions" />

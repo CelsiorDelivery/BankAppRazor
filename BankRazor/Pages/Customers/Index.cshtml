@@ -1,0 +1,90 @@
+@page
+@model BankRazor.Pages.Customers.IndexModel
+@{
+    ViewData["Title"] = "Customer Details";
+}
+<section class="page-head">
+    <div>
+        <p class="eyebrow">Master</p>
+        <h1>Customer Details</h1>
+    </div>
+    <form method="get" class="inline-search">
+        <input asp-for="SearchAccountNo" placeholder="Account No" />
+        <button type="submit">Search</button>
+        <a class="button secondary" asp-page="/Customers/Index" asp-route-newCustomer="true">Add New</a>
+    </form>
+</section>
+
+<section class="panel">
+    <h2>@(Model.IsNew ? "Add Customer" : "Customer Record")</h2>
+    <form method="post" asp-page-handler="Save" asp-antiforgery="true" class="form-grid">
+        <input type="hidden" asp-for="IsNew" />
+        <label>Customer ID <input asp-for="Customer.CustomerID" readonly /></label>
+        <label>Account No <input asp-for="Customer.AccountNo" readonly /></label>
+        <label>Title <input asp-for="Customer.ContactTitle" /></label>
+        <label>First Name <input asp-for="Customer.FirstName" required /></label>
+        <label>Middle Name <input asp-for="Customer.MiddleName" /></label>
+        <label>Last Name <input asp-for="Customer.LastName" required /></label>
+        <label>Account Type <input asp-for="Customer.AccountType" /></label>
+        <label>Date Opened <input asp-for="Customer.DateOfOpen" type="date" /></label>
+        <label>DOB <input asp-for="Customer.DOB" type="date" /></label>
+        <label>Sex
+            <select asp-for="Customer.Sex">
+                <option value="">Select</option>
+                <option>MALE</option>
+                <option>FEMALE</option>
+            </select>
+        </label>
+        <label>Cheque
+            <select asp-for="Customer.Cheque">
+                <option>YES</option>
+                <option>NO</option>
+            </select>
+        </label>
+        <label>Status
+            <select asp-for="Customer.Relationstatus">
+                <option>MAJOR</option>
+                <option>MINOR</option>
+            </select>
+        </label>
+        <label>Balance <input asp-for="Customer.Balance" type="number" step="0.01" required /></label>
+        <label>Nominee <input asp-for="Customer.Nominee" required /></label>
+        <label>Relationship <input asp-for="Customer.Relationship" /></label>
+        <label>Phone No <input asp-for="Customer.PhoneNO" maxlength="8" /></label>
+        <label>Mobile No <input asp-for="Customer.MobileNO" maxlength="10" /></label>
+        <label>Pincode <input asp-for="Customer.Pincode" maxlength="6" /></label>
+        <label>Email <input asp-for="Customer.EmailID" type="email" /></label>
+        <label class="wide">Address <textarea asp-for="Customer.Address" rows="3" required></textarea></label>
+        <div class="actions wide">
+            <button type="submit">Save</button>
+            @if (!Model.IsNew)
+            {
+                <button type="submit" asp-page-handler="Delete" class="danger" onclick="return confirm('Delete this customer?')">Delete</button>
+            }
+        </div>
+    </form>
+</section>
+
+<section class="panel">
+    <h2>Customers</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>Customer ID</th><th>Account No</th><th>Name</th><th>Cheque</th><th>Balance</th><th></th></tr>
+            </thead>
+            <tbody>
+            @foreach (var customer in Model.Customers)
+            {
+                <tr>
+                    <td>@customer.CustomerID</td>
+                    <td>@customer.AccountNo</td>
+                    <td>@customer.FullName</td>
+                    <td>@customer.Cheque</td>
+                    <td>@customer.Balance.ToString("0.00")</td>
+                    <td><a asp-page="/Customers/Index" asp-route-accountNo="@customer.AccountNo">Edit</a></td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</section>

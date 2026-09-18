@@ -1,0 +1,33 @@
+@page
+@model BankRazor.Pages.Transactions.DepositModel
+@{
+    ViewData["Title"] = "Deposit";
+}
+<section class="page-head"><div><p class="eyebrow">Transactions</p><h1>Deposit Amount</h1></div></section>
+<section class="panel">
+    <form method="get" class="inline-search">
+        <input asp-for="AccountNo" placeholder="Account No" />
+        <button type="submit">Search</button>
+    </form>
+    @if (Model.Customer is not null)
+    {
+        <div class="summary">
+            <span>@Model.Customer.FullName</span><span>Customer ID: @Model.Customer.CustomerID</span><span>Balance: @Model.Customer.Balance.ToString("0.00")</span><span>Cheque: @Model.Customer.Cheque</span>
+        </div>
+    }
+    <form method="post" asp-antiforgery="true" class="form-grid compact">
+        <label>Account No <input asp-for="AccountNo" required /></label>
+        <label>Transaction ID <input value="@Model.NextTransactionId" readonly /></label>
+        <label>Date <input asp-for="Date" type="date" /></label>
+        <label>Amount <input asp-for="Amount" type="number" step="0.01" required /></label>
+        <label>Mode
+            <select asp-for="Mode">
+                <option>Cash</option>
+                <option>Cheque</option>
+            </select>
+        </label>
+        <label>Cheque No <input asp-for="ChequeNo" maxlength="6" /></label>
+        <label>Bank Name <input asp-for="BankName" /></label>
+        <div class="actions wide"><button type="submit">Save Deposit</button></div>
+    </form>
+</section>

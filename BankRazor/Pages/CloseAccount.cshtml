@@ -1,0 +1,24 @@
+@page
+@model BankRazor.Pages.CloseAccountModel
+@{
+    ViewData["Title"] = "Close Account";
+}
+<section class="page-head"><div><p class="eyebrow">Master</p><h1>Close Account</h1></div></section>
+<section class="panel">
+    <form method="get" class="inline-search">
+        <input asp-for="CustomerId" placeholder="Customer ID" />
+        <button type="submit">Search</button>
+    </form>
+    @if (Model.Customer is not null)
+    {
+        <div class="details">
+            <div><strong>@Model.Customer.FullName</strong><span>Customer ID: @Model.Customer.CustomerID</span></div>
+            <div><span>Account No: @Model.Customer.AccountNo</span><span>Balance: @Model.Customer.Balance.ToString("0.00")</span></div>
+            <div><span>Address: @Model.Customer.Address</span><span>Mobile: @Model.Customer.MobileNO</span></div>
+        </div>
+        <form method="post" asp-antiforgery="true">
+            <input type="hidden" asp-for="CustomerId" />
+            <button class="danger" onclick="return confirm('Close this account? This deletes the customer record.')" type="submit">Close Account</button>
+        </form>
+    }
+</section>

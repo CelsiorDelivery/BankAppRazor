@@ -1,0 +1,21 @@
+@page "/Menu"
+@model IndexModel
+@{
+    ViewData["Title"] = "Main Menu";
+}
+<section class="hero">
+    <div>
+        <p class="eyebrow">ND Private Limited</p>
+        <h1>BANK OF VIKHROLI</h1>
+</section>
+<section class="menu-grid">
+    <a asp-page="/Customers/Index"><strong>Customer Details</strong><span>Add, edit, search, delete, and browse accounts.</span></a>
+    <a asp-page="/CloseAccount"><strong>Close Account</strong><span>Find a customer and close the account.</span></a>
+    <a asp-page="/Settings"><strong>Settings</strong><span>Minimum balances and interest rate.</span></a>
+    <a asp-page="/Transactions/Deposit"><strong>Deposit Amount</strong><span>Cash and cheque deposits.</span></a>
+    <a asp-page="/Transactions/Withdraw"><strong>Withdraw Amount</strong><span>Withdraw with minimum-balance checks.</span></a>
+    <a asp-page="/Transactions/Interest"><strong>Give Interest</strong><span>Monthly interest posting.</span></a>
+    <a asp-page="/Reports/Daily"><strong>Daily Transaction</strong><span>Transactions on a selected date.</span></a>
+    <a asp-page="/Reports/BetweenDates"><strong>Between Dates</strong><span>Date range transaction report.</span></a>
+    <a asp-page="/Reports/MonthlyStatement"><strong>Monthly Statement</strong><span>Customer statement for a period.</span></a>
+</section>

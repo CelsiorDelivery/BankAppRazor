@@ -1,0 +1,32 @@
+@page
+@model LoginModel
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login - Bank of Vikhroli</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="login-page">
+    <section class="login-panel">
+        <img src="~/images/logo.jpg" alt="Bank logo" />
+        <h1>BANK OF VIKHROLI</h1>
+        <form method="post" asp-antiforgery="true">
+            @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+            {
+                <div class="validation">@Model.ErrorMessage</div>
+            }
+            <label>User Name <input asp-for="UserName" autofocus /></label>
+            <label>Password <input asp-for="Password" type="password" /></label>
+            <div class="actions">
+                <button type="submit">OK</button>
+                <a class="button secondary" href="/">Cancel</a>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

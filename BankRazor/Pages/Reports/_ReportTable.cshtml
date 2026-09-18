@@ -1,0 +1,42 @@
+@model IReadOnlyList<BankRazor.Models.BankTransaction>
+<section class="panel">
+    <form method="get" class="inline-search report-filter">
+        @if (ViewContext.RouteData.Values["page"]?.ToString()?.Contains("Daily") == true)
+        {
+            <input name="Date" type="date" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+        }
+        else
+        {
+            <input name="From" type="date" value="@DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd")" />
+            <input name="To" type="date" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+            @if (ViewContext.RouteData.Values["page"]?.ToString()?.Contains("MonthlyStatement") == true)
+            {
+                <input name="CustomerId" placeholder="Customer ID" />
+            }
+        }
+        <button type="submit">Show</button>
+    </form>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>ID</th><th>Date</th><th>Customer</th><th>Account</th><th>Type</th><th>Mode</th><th>Amount</th><th>Balance</th><th>Month</th></tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TransactionID</td>
+                    <td>@item.Date?.ToString("dd-MMM-yyyy")</td>
+                    <td>@item.CustomerName</td>
+                    <td>@item.AccountNo</td>
+                    <td>@item.TransactionType</td>
+                    <td>@item.Mode</td>
+                    <td>@item.Amount.ToString("0.00")</td>
+                    <td>@item.Balance.ToString("0.00")</td>
+                    <td>@item.Month</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</section>

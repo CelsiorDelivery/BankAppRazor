@@ -1,0 +1,28 @@
+@page
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BANK OF VIKHROLI</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <meta http-equiv="refresh" content="3;url=/Login" />
+</head>
+<body class="splash-page">
+    <section class="splash-panel">
+        <img src="~/images/logo.jpg" alt="Bank logo" />
+        <h1>BANK OF VIKHROLI</h1>
+        <p id="status">Checking Network settings</p>
+        <div class="progress"><span></span></div>
+        <p class="muted">ND Private Limited</p>
+    </section>
+    <script>
+        const statusText = document.getElementById("status");
+        setTimeout(() => statusText.textContent = "Verifying the Network setting", 1000);
+        setTimeout(() => statusText.textContent = "Connecting To the Server", 2000);
+    </script>
+</body>
+</html>

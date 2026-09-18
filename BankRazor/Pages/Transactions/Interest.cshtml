@@ -1,0 +1,33 @@
+@page
+@model BankRazor.Pages.Transactions.InterestModel
+@{
+    ViewData["Title"] = "Give Interest";
+}
+<section class="page-head"><div><p class="eyebrow">Transactions</p><h1>Give Interest</h1></div></section>
+<section class="panel">
+    <form method="get" class="inline-search">
+        <input asp-for="AccountNo" placeholder="Account No" />
+        <button type="submit">Search</button>
+    </form>
+    @if (Model.Customer is not null)
+    {
+        <div class="summary">
+            <span>@Model.Customer.FullName</span><span>Balance: @Model.Customer.Balance.ToString("0.00")</span><span>Interest Rate: @Model.InterestRate.ToString("0.##")%</span>
+        </div>
+    }
+    <form method="post" asp-antiforgery="true" class="form-grid compact">
+        <label>Account No <input asp-for="AccountNo" required /></label>
+        <label>Transaction ID <input value="@Model.NextTransactionId" readonly /></label>
+        <label>Date <input asp-for="Date" type="date" /></label>
+        <label>Month
+            <select asp-for="Month">
+                @foreach (var month in Model.Months)
+                {
+                    <option>@month</option>
+                }
+            </select>
+        </label>
+        <label>Year <input asp-for="Year" type="number" min="2005" max="2035" /></label>
+        <div class="actions wide"><button type="submit">Apply Interest</button></div>
+    </form>
+</section>

@@ -1,0 +1,37 @@
+# ---- .NET build output ----
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+
+# ---- Locally-scoped tool homes created by run-local.ps1 ----
+.nuget-packages/
+.dotnet-home/
+.appdata/
+.localappdata/
+
+# ---- Run logs ----
+BankRazor-*.log
+BankRazor-*.out.log
+BankRazor-*.err.log
+
+# ---- ASP.NET Core Data Protection keys (machine-specific) ----
+BankRazor/App_Data/Keys/
+
+# ---- Access lock files (transient, never commit) ----
+*.ldb
+*.laccdb
+
+# ---- OS junk ----
+Thumbs.db
+desktop.ini
+
+# ---- IMPORTANT ----
+# The Access database is committed on purpose so that data travels with a
+# checkout. Do NOT add *.mdb or App_Data/ to this ignore list.
+# Tracked deliberately:
+#   BankVB6/dbBank.mdb          (original VB6 database)
+#   BankRazor/App_Data/dbBank.mdb (database used by the Razor app)
+
+# Legacy VB6 source is kept locally but is not part of this repository.
+BankVB6/
